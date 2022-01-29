@@ -531,10 +531,10 @@ init_cmdargs (int argc, char **argv, int skip_args, char const *original_pwd)
 #elif defined HAVE_MACGUI
       /* If we are running from the build directory, set DIR to the
 	 src subdirectory of the Emacs tree.  */
-      if (SBYTES (dir) > sizeof ("/mac/Emacs.app/Contents/MacOS/") - 1
+      if (SBYTES (dir) > sizeof ("/mac/EmacsMac.app/Contents/MacOS/") - 1
 	  && 0 == strcmp ((SSDATA (dir) + SBYTES (dir)
-			   - sizeof ("/mac/Emacs.app/Contents/MacOS/") + 1),
-			  "/mac/Emacs.app/Contents/MacOS/"))
+			   - sizeof ("/mac/EmacsMac.app/Contents/MacOS/") + 1),
+			  "/mac/EmacsMac.app/Contents/MacOS/"))
 	{
 	  if (NILP (Vpurify_flag))
 	    {

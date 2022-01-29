@@ -33,9 +33,9 @@ mac_self_contained=@mac_self_contained@
 
 ifeq ($(DUMPING),pdumper)
 ifeq (${mac_self_contained},no)
-bundle_pdmp := Emacs.app/Contents/MacOS/Emacs.pdmp
+bundle_pdmp := EmacsMac.app/Contents/MacOS/Emacs.pdmp
 else
-bundle_pdmp := Emacs.app/Contents/MacOS/libexec/${configuration}/Emacs.pdmp
+bundle_pdmp := EmacsMac.app/Contents/MacOS/libexec/${configuration}/Emacs.pdmp
 endif
 else
 bundle_pdmp :=
@@ -44,31 +44,31 @@ endif
 lprojs = English Dutch French German Italian Japanese Spanish \
   ar ca cs da el en_AU en_GB es_419 es_MX fi fr_CA he hi hr hu id ko ms no \
   pl pt pt_BR pt_PT ro ru sk sv th tr uk vi zh_CN zh_HK zh_TW
-lprojdirs = $(patsubst %,Emacs.app/Contents/Resources/%.lproj,${lprojs})
+lprojdirs = $(patsubst %,EmacsMac.app/Contents/Resources/%.lproj,${lprojs})
 
 ${lprojdirs}:
 	${MKDIR_P} $@
 
 ifneq ($(CURDIR), $(realpath ${srcdir}))
-Emacs.app/Contents/MacOS/Emacs.sh: ${srcdir}/Emacs.app/Contents/MacOS/Emacs.sh
-	${MKDIR_P} Emacs.app/Contents/MacOS
+EmacsMac.app/Contents/MacOS/Emacs.sh: ${srcdir}/EmacsMac.app/Contents/MacOS/Emacs.sh
+	${MKDIR_P} EmacsMac.app/Contents/MacOS
 	cp $< $@
-Emacs.app/Contents/PkgInfo: ${srcdir}/Emacs.app/Contents/PkgInfo
+EmacsMac.app/Contents/PkgInfo: ${srcdir}/EmacsMac.app/Contents/PkgInfo
 	cp $< $@
-Emacs.app/Contents/Resources/Emacs.icns: ${srcdir}/Emacs.app/Contents/Resources/Emacs.icns
-	${MKDIR_P} Emacs.app/Contents/Resources
+EmacsMac.app/Contents/Resources/Emacs.icns: ${srcdir}/EmacsMac.app/Contents/Resources/Emacs.icns
+	${MKDIR_P} EmacsMac.app/Contents/Resources
 	cp $< $@
-Emacs.app/Contents/Resources/document.icns: ${srcdir}/Emacs.app/Contents/Resources/document.icns
-	${MKDIR_P} Emacs.app/Contents/Resources
+EmacsMac.app/Contents/Resources/document.icns: ${srcdir}/EmacsMac.app/Contents/Resources/document.icns
+	${MKDIR_P} EmacsMac.app/Contents/Resources
 	cp $< $@
 endif
 
-macosx-bundle: ${lprojdirs} Emacs.app/Contents/MacOS/Emacs.sh \
-	Emacs.app/Contents/PkgInfo Emacs.app/Contents/Resources/Emacs.icns \
-	Emacs.app/Contents/Resources/document.icns
-macosx-app: macosx-bundle Emacs.app/Contents/MacOS/Emacs $(bundle_pdmp)
-Emacs.app/Contents/MacOS/Emacs: ../src/emacs${EXEEXT}
-	${MKDIR_P} Emacs.app/Contents/MacOS
+macosx-bundle: ${lprojdirs} EmacsMac.app/Contents/MacOS/Emacs.sh \
+	EmacsMac.app/Contents/PkgInfo EmacsMac.app/Contents/Resources/Emacs.icns \
+	EmacsMac.app/Contents/Resources/document.icns
+macosx-app: macosx-bundle EmacsMac.app/Contents/MacOS/Emacs $(bundle_pdmp)
+EmacsMac.app/Contents/MacOS/Emacs: ../src/emacs${EXEEXT}
+	${MKDIR_P} EmacsMac.app/Contents/MacOS
 	rm -f $@
 	cp $< $@
 ifeq ($(DUMPING),pdumper)
@@ -86,12 +86,12 @@ all: macosx-app
 
 clean:
 	rm -rf ${lprojdirs}
-	rm -f Emacs.app/Contents/MacOS/Emacs $(bundle_pdmp)
+	rm -f EmacsMac.app/Contents/MacOS/Emacs $(bundle_pdmp)
 
 distclean: clean
 	rm -f Makefile
-	rm -f Emacs.app/Contents/Info.plist \
-	  Emacs.app/Contents/Resources/English.lproj/InfoPlist.strings
+	rm -f EmacsMac.app/Contents/Info.plist \
+	  EmacsMac.app/Contents/Resources/English.lproj/InfoPlist.strings
 
 bootstrap-clean maintainer-clean: distclean
 

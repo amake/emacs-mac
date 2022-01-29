@@ -536,7 +536,7 @@ esac
 
 AC_ARG_ENABLE(mac-app,
 [AS_HELP_STRING([--enable-mac-app@<:@=DIR@:>@],
-                [specify install directory for Emacs.app on macOS
+                [specify install directory for EmacsMac.app on macOS
 		 [DIR=/Application]])],
 [ mac_appdir_x=${enableval}])
 
@@ -1910,10 +1910,10 @@ if test "${with_mac}" != no; then
     esac
   fi
 
-  mac_appbindir=${mac_appdir}/Emacs.app/Contents/MacOS
-  mac_applibexecdir=${mac_appdir}/Emacs.app/Contents/MacOS/libexec/${configuration}
-  mac_applibdir=${mac_appdir}/Emacs.app/Contents/Frameworks
-  mac_appresdir=${mac_appdir}/Emacs.app/Contents/Resources
+  mac_appbindir=${mac_appdir}/EmacsMac.app/Contents/MacOS
+  mac_applibexecdir=${mac_appdir}/EmacsMac.app/Contents/MacOS/libexec/${configuration}
+  mac_applibdir=${mac_appdir}/EmacsMac.app/Contents/Frameworks
+  mac_appresdir=${mac_appdir}/EmacsMac.app/Contents/Resources
 
   if test "${with_native_image_api}" = yes; then
      AC_DEFINE(HAVE_NATIVE_IMAGE_API, 1, [Define to use native OS APIs for images.])
@@ -1937,7 +1937,7 @@ if test "${with_ns}" != no; then
   # Even a headless Emacs can build macuvs.h, so this should let you bootstrap.
   if test "${opsys}" = darwin && test -f "$srcdir/src/macuvs.h"; then
      NS_IMPL_COCOA=yes
-     ns_appdir=`pwd`/nextstep/Emacs.app
+     ns_appdir=`pwd`/nextstep/EmacsMac.app
      ns_appbindir=${ns_appdir}/Contents/MacOS
      ns_applibexecdir=${ns_appdir}/Contents/MacOS/libexec
      ns_applibdir=${ns_appdir}/Contents/Frameworks
@@ -1996,7 +1996,7 @@ fail;
      fi
   fi
   if test $NS_IMPL_GNUSTEP = yes; then
-     ns_appdir=`pwd`/nextstep/Emacs.app
+     ns_appdir=`pwd`/nextstep/EmacsMac.app
      ns_appbindir=${ns_appdir}
      ns_applibexecdir=${ns_appdir}/libexec
      ns_applibdir=${ns_appdir}/Frameworks
@@ -4204,7 +4204,7 @@ if test "${HAVE_MACGUI}" = "yes"; then
   # We also have mouse menus.
   HAVE_MENUS=yes
   # Tell src/Makefile.in to create files in the macOS application
-  # bundle mac/Emacs.app.
+  # bundle mac/EmacsMac.app.
   OTHER_FILES=macosx-app
 fi
 
@@ -6162,7 +6162,7 @@ if test "$HAVE_NS" = "yes"; then
    echo
    AS_ECHO(["Run '${MAKE-make}' to build Emacs, then run 'src/emacs' to test it.
 Run '${MAKE-make} install' in order to build an application bundle.
-The application will go to nextstep/Emacs.app and can be run or moved
+The application will go to nextstep/EmacsMac.app and can be run or moved
 from there."])
    if test "$EN_NS_SELF_CONTAINED" = "yes"; then
       echo "The application will be fully self-contained."
@@ -6194,8 +6194,8 @@ esac
 
 MAC_TEMPLATE_FILES=
 if test "$HAVE_MACGUI" = "yes"; then
-    AC_CONFIG_FILES([mac/Emacs.app/Contents/Info.plist:mac/templates/Info.plist.in \
-    mac/Emacs.app/Contents/Resources/English.lproj/InfoPlist.strings:mac/templates/InfoPlist.strings.in])
+    AC_CONFIG_FILES([mac/EmacsMac.app/Contents/Info.plist:mac/templates/Info.plist.in \
+    mac/EmacsMac.app/Contents/Resources/English.lproj/InfoPlist.strings:mac/templates/InfoPlist.strings.in])
     MAC_TEMPLATE_FILES="mac/templates/Info.plist.in mac/templates/InfoPlist.strings.in"
 fi
 AC_SUBST(MAC_TEMPLATE_FILES)
