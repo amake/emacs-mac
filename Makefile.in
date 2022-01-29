@@ -355,8 +355,8 @@ BIN_DESTDIR='${ns_appbindir}/'
 ELN_DESTDIR = ${ns_applibdir}/
 endif
 else
-BIN_DESTDIR='${mac_appbindir}/'
-ELN_DESTDIR = ${mac_applibdir}/
+BIN_DESTDIR='$(DESTDIR)${mac_appbindir}/'
+ELN_DESTDIR = $(DESTDIR)${mac_applibdir}/
 endif
 
 all: ${SUBDIR} info
@@ -562,8 +562,8 @@ else
 	rm -rf ${ns_appresdir}/share
 endif
 else
-	subdir=${mac_appresdir}/site-lisp && ${write_subdir}
-	rm -rf ${mac_appresdir}/share
+	subdir=$(DESTDIR)${mac_appresdir}/site-lisp && ${write_subdir}
+	rm -rf $(DESTDIR)${mac_appresdir}/share
 endif
 
 ### Windows-specific install target for installing programs produced
